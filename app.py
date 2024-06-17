@@ -16,7 +16,7 @@ st.divider()
 recognizer = sr.Recognizer()
 
 # Capture audio from the microphone
-record = st.button(':violet_circle: Voice Search 🔍')
+record = st.button('Press to Speak 🔍')
 
 if record:
     with sr.Microphone() as source:
@@ -48,7 +48,9 @@ if record:
         st.caption("Sorry, I could not understand what you said.")
     except sr.RequestError as e:
         st.caption(f"Error connecting to the recognition service: {e}")
-    except openai.error.OpenAIError as e:
+    except openai.OpenAIError as e:
         st.caption(f"OpenAI API error: {e}")
+    except Exception as e:
+        st.caption(f"Error occurred: {e}")
 
     st.divider()
